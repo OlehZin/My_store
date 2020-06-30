@@ -1,0 +1,9 @@
+<h1>Edit product</h1>
+  
+  <%= form_for @product do |f| %>
+  <%= f.label "Зображення" %>
+  <%= f.file_field :image %>
+    <%= render partial: "form", locals: {f: f}%>
+
+    <p><%= f.submit "Зберегти товар" %></p>
+  <% end %>

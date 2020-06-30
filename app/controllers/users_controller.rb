@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
-    redirect_to products_path(@product)
+    redirect_to products_path
   end
 
   def update
