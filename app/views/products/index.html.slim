@@ -1,3 +1,24 @@
-h1 Products
-- @products.each do |product|
-  p= link_to product.name, product_path(product)
+<h1>Products</h1>
+
+<% if @products.empty? %>
+<b>No products in the store</b>
+<% else %>
+<table class="products">
+    <tr> 
+        <th>item id</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Видалення</th>
+  </tr>  
+<% end %>
+<% @products.each do |product| %>
+    <tr> 
+        <td><%= product.id %></td>
+        <td>
+        <%=link_to product.name, products_path(product) %></td>
+        <td><%= product.price %> грн</td>
+        <td><%= link_to "Видалити", product, method: :delete, 
+            data: {confirm: "Ви впевнені, що хочете видалити?"} %></td>
+    </tr>
+
+<% end %>
