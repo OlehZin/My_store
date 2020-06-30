@@ -1,0 +1,15 @@
+p
+  | Ціна:
+  = succeed "<%=" do
+    br/
+  | f.text_field :price %
+p
+  | Назва:
+  = succeed "<%=" do
+    br/
+  | f.text_field :name %
+p
+  | Опис:
+  = succeed "<%=" do
+    br/
+  | f.text_field :description %
