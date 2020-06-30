@@ -3,17 +3,14 @@ class UsersController < ApplicationController
   
   def index
     @users = User.all 
-    authorize @users
 	end
 
 	def show
     @user = find_user
-    authorize @user
 	end
 
   def edit 
     @user = find_user
-    authorize @user
   end
 
   def create
@@ -24,7 +21,6 @@ class UsersController < ApplicationController
   def update
     @user = find_user
     redirect_to products_path(@product) if @user.update_attributes(user_params)
-    authorize @user
   end
 
   private
