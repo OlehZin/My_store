@@ -4,8 +4,6 @@ class Order < ApplicationRecord
 
   scope :active, -> { where(status: "active") }
   
-  after_create :change_status
-    
   def finish
     self.total_price = self.products.sum(:price)
     self.save
@@ -14,5 +12,5 @@ class Order < ApplicationRecord
   def change_status
     self.status = "completed"
   end
-  
+
 end
