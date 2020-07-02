@@ -1,0 +1,19 @@
+h1 Listing account_faqs
+
+table
+  thead
+    tr
+      th
+      th
+      th
+
+  tbody
+    - @account_faqs.each do |account_faq|
+      tr
+        td = link_to 'Show', account_faq
+        td = link_to 'Edit', edit_account_faq_path(account_faq)
+        td = link_to 'Destroy', account_faq, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Faq', new_account_faq_path

@@ -4,14 +4,15 @@ h1 Products
 - else 
 table.products
   tr
-    th item id
+    th product id
     th Name
     th Price
-    th Видалення
+    th Description
   
   - @products.each do |product| 
     tr
       td= product.id 
       td= link_to product.name, products_path(product) 
       td= product.price.to_s + " грн"
-      td= link_to "Видалити", product, method: :delete, data: {confirm: "Ви впевнені, що хочете видалити?"}
+      
+      

@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!
+  before_action :is_admin?, only: [:edit, :update, :new, :create, :destroy]
+  # before_action :find_product, only: [:show]
   
   def index
     @products = Product.all
@@ -13,7 +15,45 @@ class ProductsController < ApplicationController
     end
   end
 
+  # /products/new GET
+  def new
+    @product = Product.new
+  end
   
+  # /products/1/edit GET
+  def edit
+  end
+  
+  # /products POST
+  def create
+    @product = Product.create(product_params)
+    if @product.errors.empty?
+      flash[:success] = "Created!"
+      redirect_to products_path(@product)
+    else
+      flash.now[:error] = "Incorrect!"
+      render "new"
+    end
+  end
+
+
+    # /products/1 PUT
+  def update
+    @product.update_attributes(product_params)
+      if @product.errors.empty?
+        flash[:success] = "Updated!"
+        redirect_to products_path(@product)
+      else
+        flash.now[:error] = "Incorrect!"
+        render "edit"
+      end
+  end
+  # /products/1 DELETE
+  def destroy
+    @product.destroy
+    redirect_to action: "index"
+  end
+
   private
 
   def product_params
@@ -24,5 +64,4 @@ class ProductsController < ApplicationController
     @product = Product.where(id: params[:id]).first
     render_404 unless @product
   end
-
 end

@@ -1,69 +1,40 @@
-class Admin::ProductsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :find_product, only: [:show]
-  before_action :is_admin?, only: [:edit, :update, :new, :create, :destroy]
+class Admin < ApplicationController
+  
+  before_action :authenticate_user!, :is_admin?
   
   def index
-    @products = Product.all
+    @users = User.all 
+	end
+
+	def show
+    @user = find_user
+	end
+
+  def edit 
+    @user = find_user
   end
 
-  # /products/1 GET
-  def show
-    # @product = Product.find(params[:id])
-    unless @product 
-      render plain: "Page not found", status: 404
-    end
-  end
-
-  # /products/new GET
-  def new
-    @product = Product.new
-  end
-  
-  # /products/1/edit GET
-  def edit
-  end
-  
-  # /products POST
   def create
-    @product = Product.create(product_params)
-    if @product.errors.empty?
-      flash[:success] = "Created!"
-      redirect_to products_path(@product)
-    else
-      flash.now[:error] = "Incorrect!"
-      render "new"
-    end
+    @user = User.create(user_params)
+    redirect_to products_path
   end
 
-
-    # /products/1 PUT
   def update
-    @product.update_attributes(product_params)
-      if @product.errors.empty?
-        flash[:success] = "Updated!"
-        redirect_to products_path(@product)
-      else
-        flash.now[:error] = "Incorrect!"
-        render "edit"
-      end
-  end
-  # /products/1 DELETE
-  def destroy
-    @product.destroy
-    redirect_to action: "index"
+    @user = find_user
+    redirect_to products_path(@product) if @user.update_attributes(user_params)
   end
 
   private
 
-  def product_params
-    params.require(:product).permit!
-  end 
-    
-  def find_product
-    @product = Product.where(id: params[:id]).first
-    render_404 unless @product
+  def user_params
+    params.require(:user).permit!
   end
+
+  def find_user
     
+    #binding.pry
+    
+    User.find(params[:id])
+  end  
   
 end

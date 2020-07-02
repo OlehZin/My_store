@@ -21,7 +21,5 @@ class User < ApplicationRecord
 
   enum role: [:user, :admin]
 
-
-
-
+  has_many :orders
 end
