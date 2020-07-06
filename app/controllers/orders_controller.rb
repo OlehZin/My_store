@@ -4,11 +4,13 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
   end
-  
-  def finish #POST
-    @order = current_user.orders.active.find(id)
+  # POST
+  def finish 
+    @order = current_user.create_order
+    @order.products << current_user.cart.products
+    current_user.cart.products.clear
     @order.finish
-    redirect_to :root_path
+    redirect_to :root
   end
 
 end

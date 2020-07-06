@@ -8,11 +8,13 @@ table.products
     th Name
     th Price
     th Description
+    th Buy
   
   - @products.each do |product| 
     tr
       td= product.id 
       td= link_to product.name, products_path(product) 
       td= product.price.to_s + " грн"
+      td= link_to "buy", add_to_order_path(product_id: product.id), method: :post
       
       

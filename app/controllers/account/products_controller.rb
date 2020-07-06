@@ -5,19 +5,23 @@ class Account::ProductsController < ApplicationController
     @products = Product.all
   end
 
-  # /products/1 GET
+  # account/products/1 GET
   def show
     # @product = Product.find(params[:id])
     unless @product 
       render plain: "Page not found", status: 404
     end
   end
-
-  def add_to_order #POST!!!!!!!!!!!!!!!!!
-    @order = current_user.orders.active.last || current_user.orders.new(status: "active")
-    @order.products << find_product
-    @order.save
+  # POST
+  def add_to_cart 
+    @cart = current_user.cart || current_user.create_cart
+    @cart.products << find_product
+    @cart.after_save :method
     redirect_to products_path(find_product)
+    #@order = current_user.orders.active.last || current_user.orders.new(status: "active")
+    #@order.products << find_product
+    #@order.save
+    #redirect_to products_path(find_product)
   end
   private
 

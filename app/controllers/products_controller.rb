@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!
-  before_action :is_admin?, only: [:edit, :update, :new, :create, :destroy]
+  #before_action :check_if_admin, only: [:edit, :update, :new, :create, :destroy]
   # before_action :find_product, only: [:show]
   
   def index
@@ -22,6 +22,7 @@ class ProductsController < ApplicationController
   
   # /products/1/edit GET
   def edit
+    
   end
   
   # /products POST
@@ -52,6 +53,17 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
     redirect_to action: "index"
+  end
+
+  def add_to_order #POST!!!!!!!!!!!!!!!!!
+    @cart = current_user.cart
+    @cart.products << find_product
+    @cart.after_save :method
+    redirect_to products_path(find_product)
+    #@order = current_user.orders.active.last || current_user.orders.new(status: "active")
+    #@order.products << find_product
+    #@order.save
+    #redirect_to products_path(find_product)
   end
 
   private

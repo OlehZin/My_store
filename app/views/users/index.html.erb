@@ -1,3 +1,9 @@
-<% @users.each do |user| %>
-  <%= link_to "user.email", users_path(user) %>
-<% end %>
+<ul>
+  <% @users.each do |user| %>
+    <li><%= user.email %></li>
+    <tr>
+      <td><%= link_to "Видалити", user, method: :delete, 
+        data: {confirm: "Ви впевнені, що хочете видалити?"} %></td>
+    </tr>
+  <% end %>
+</ul>

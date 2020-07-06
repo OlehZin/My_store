@@ -22,4 +22,5 @@ class User < ApplicationRecord
   enum role: [:user, :admin]
 
   has_many :orders
+  has_one :cart
 end

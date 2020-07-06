@@ -7,10 +7,15 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
   root to: 'home#index'
-  resources :products, only: [:index, :show]
+  post '/finish', to: 'orders#finish'
+  resources :products 
   namespace :account do
-    resources :products
+    resources :products, only: [:index, :show] do
+      member do
+        post :add_to_cart
+      end
+    end
   end
-  post '/add_to_order/:product_id' => 'order#add_to_order', :as => 'add_to_order'
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

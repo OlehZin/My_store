@@ -1,0 +1,29 @@
+<h1>Products</h1>
+ <p><%= link_to "New Product", new_product_path %></p>
+<thead>
+<% if @products.empty? %>
+<b>No products in the store</b>
+<% else %>
+<table class="table table-bordered table-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Видалення</th>
+    </tr>
+  </thead>
+<% end %>
+<% @products.each do |i| %>
+  <tbody>
+    <tr> 
+      
+      <td><%= i.id %></td>
+      <td><%=link_to i.name, products_path(i) %></td>
+      <td><%= i.price %> грн</td>
+      <td><%= link_to "Видалити", i, method: :delete, 
+        data: {confirm: "Ви впевнені, що хочете видалити?"} %></td>
+    </tr>
+    </tbody>
+   
+
+<% end %>
