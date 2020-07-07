@@ -10,9 +10,10 @@ class ProductsController < ApplicationController
   # /products/1 GET
   def show
     # @product = Product.find(params[:id])
-    unless @product 
-      render plain: "Page not found", status: 404
-    end
+    find_product
+    # unless @product 
+    #  render plain: "Page not found", status: 404
+    #end
   end
 
   # /products/new GET
@@ -22,7 +23,7 @@ class ProductsController < ApplicationController
   
   # /products/1/edit GET
   def edit
-    
+    find_product
   end
   
   # /products POST
@@ -40,6 +41,7 @@ class ProductsController < ApplicationController
 
     # /products/1 PUT
   def update
+    find_product
     @product.update_attributes(product_params)
       if @product.errors.empty?
         flash[:success] = "Updated!"
@@ -51,6 +53,7 @@ class ProductsController < ApplicationController
   end
   # /products/1 DELETE
   def destroy
+    find_product
     @product.destroy
     redirect_to action: "index"
   end

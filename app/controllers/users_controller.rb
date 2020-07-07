@@ -26,6 +26,7 @@ class UsersController < ApplicationController
   end
   
   def destroy
+    find_user
     @user.destroy
     redirect_to action: "index"
   end
