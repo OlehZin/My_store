@@ -1,7 +1,7 @@
 class Account::OrdersController < ApplicationController
   
   def show
-    @order = Order.find(params[:id])
+    @order = current_user.cart
   end
 
   

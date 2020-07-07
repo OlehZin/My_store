@@ -9,7 +9,6 @@
       <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Price</th>
-      <th scope="col">Видалення</th>
       <th scope="col">Buy</th>
     </tr>
   </thead>
@@ -21,11 +20,7 @@
       <td><%= product.id %></td>
       <td><%= link_to product.name, product_path(product) %></td>
       <td><%= product.price %> грн</td>
-      <td><%= link_to "Видалити", product, method: :delete, 
-        data: {confirm: "Ви впевнені, що хочете видалити?"} %></td>
-      <td><%= link_to "Buy", add_to_cart_account_product_path(current_user, product), method: :post %></td>
+      <td><%= link_to "Buy", add_to_cart_account_product_path(current_user, id: product.id), method: :post %></td>
     </tr>
     </tbody>
-   
-
 <% end %>

@@ -1,5 +1,5 @@
 class Account::ProductsController < ApplicationController
-    before_action :authenticate_user!
+  before_action :authenticate_user!
   
   def index
     @products = Product.all
@@ -15,9 +15,10 @@ class Account::ProductsController < ApplicationController
   # POST
   def add_to_cart 
     @cart = current_user.cart || current_user.create_cart
-    @cart.products << find_product
-    @cart.after_save :method
-    redirect_to products_path(find_product)
+    # binding.pry
+    @cart.products << Product.find(params[:id])
+    # @cart.after_save :method
+    redirect_to account_products_path(find_product)
     #@order = current_user.orders.active.last || current_user.orders.new(status: "active")
     #@order.products << find_product
     #@order.save
@@ -30,7 +31,7 @@ class Account::ProductsController < ApplicationController
   end 
     
   def find_product
-    @product = Product.where(id: params[:id]).first
+    @product = Product.find(params[:id])
     render_404 unless @product
   end
 end

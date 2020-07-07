@@ -22,8 +22,8 @@
       </div>
       <div id="navbar">
         <ul class="nav navbar-nav">
-          <li><%= link_to 'Products', products_path(@product) %></li>
-          <li><%= link_to 'Замовити', finish_path, method: :post %></li>
+          <li><%= link_to 'Products', account_products_path(@product) %></li>
+          <li><%= link_to 'Мої замовлення', account_order_path(current_user.orders)%></li>
         </ul>
         <ul class="nav navbar-nav pull-right">
           <% if user_signed_in? %>
