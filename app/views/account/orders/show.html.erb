@@ -1,5 +1,32 @@
-<% @order.products.each do |product|%>
-    <%= product.name %>
-    <br>
-<% end %>
-<%=link_to "finish", finish_path(@order)%>
+
+<div class="p-3 mb-2 bg-danger text-white">This is admin page for orders!</div>
+  <thead>
+  <table class="table table-striped">
+      <tr>
+        <th scope="col">ID:</th>
+        <th scope="col">Name:</th>
+        <th scope="col">Price:</th>
+      </tr>
+  </thead>
+
+
+<tbody>
+    <% @order.products.each do |product|%>
+      <tr> 
+        
+        <td><%= product.id %></td>
+        <td><%= product.name %></td>
+        <td><%= product.price %></td>
+      </tr>
+    <% end %>
+  </table>
+</tbody>
+<%= link_to "Delete order", account_order_path(@order), method: :delete, class: "btn btn-danger" %>
+
+
+
+
+
+    
+
+

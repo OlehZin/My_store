@@ -13,5 +13,9 @@
 require 'rails_helper'
 
 RSpec.describe Product, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "model tests" do
+    it "have valid factory" do
+      expect(create(:product)).to be_valid
+    end
+  end
 end

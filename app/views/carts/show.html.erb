@@ -1,0 +1,23 @@
+<thead>
+  <table class="table table-bordered table">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+    </tr>
+</thead>
+
+<tbody>
+  <% if @cart.present? %>
+    <% @cart.products.each do |product| %>
+      <tr> 
+        <td><%= product.name %></td>
+        <td><%= product.price %> $ </td>
+      </tr>
+    <%end%>
+  <%end%>
+  </table>
+</tbody>
+<%= link_to "Make order", finish_cart_path(current_user.cart.id), method: :post, class: "btn btn-success btn-lg" %>
+
+
+

@@ -1,0 +1,26 @@
+<thead>
+  <% if @orders.empty? %>
+    <div class="p-3 mb-2 bg-danger text-white">No orders yet!</div>
+  <% else %>
+    <table class="table table-striped">
+      <tr>
+        <th scope="col">ID:</th>
+        <th scope="col">Name:</th>
+        <th scope="col">Price:</th>
+      </tr>
+  <% end %>
+</thead>
+
+<%@orders.each do |order|%>
+  <p>Total price: <%= order.total_price %> $</p>
+<% order.products.each do |product|%>
+  <tbody>
+    <tr> 
+      <td><%= product.id %></td>
+      <td><%= product.name %></td>
+      <td><%= product.price %> $</td>
+    </tr>
+  </tbody>
+<% end %>
+<% end %>
+

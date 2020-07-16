@@ -8,8 +8,10 @@
 #  reset_password_token   :string
 #  reset_password_sent_at :datetime
 #  remember_created_at    :datetime
+#  name                   :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  role                   :integer          default("user")
 #
 
 class User < ApplicationRecord

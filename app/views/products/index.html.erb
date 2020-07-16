@@ -1,17 +1,15 @@
 <h1>Products</h1>
- <p><%= link_to "New Product", new_product_path, class: "btn btn-info" %></p>
-<thead>
+ <thead>
 <% if @products.empty? %>
 <b>No products in the store</b>
 <% else %>
-<table class="table table-bordered table-dark">
+<table class="table table-striped">
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Price</th>
-      <th scope="col">Видалення</th>
-      <th scope="col">Buy</th>
-    </tr>
+      <th scope="col">ID:</th>
+      <th scope="col">Name:</th>
+      <th scope="col">Price:</th>
+      <th scope="col">Description:</th>
+      </tr>
   </thead>
 <% end %>
 <% @products.each do |product| %>
@@ -20,12 +18,8 @@
       
       <td><%= product.id %></td>
       <td><%= link_to product.name, product_path(product) %></td>
-      <td><%= product.price %> грн</td>
-      <td><%= link_to "Видалити", product, method: :delete, 
-        data: {confirm: "Ви впевнені, що хочете видалити?"} %></td>
-      <td><%= link_to "Buy", add_to_cart_account_product_path(current_user, product), method: :post %></td>
+      <td><%= product.price %> $ </td>
+      <td><%= product.description %></td>
     </tr>
     </tbody>
-   
-
 <% end %>

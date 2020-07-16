@@ -1,0 +1,6 @@
+<% @faqs.each do |faq| %>
+  <h4><%= faq.title %></h4>
+  <p><%= faq.description %></p>
+<%end%>
+
+<%= render partial: "shared/contactUs" %>

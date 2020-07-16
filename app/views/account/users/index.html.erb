@@ -1,0 +1,23 @@
+<thead>
+  <h5>There are <%= User.count %> members on the site!</h5>
+    <table class="table table-striped">
+      <tr>
+        <th scope="col">Email:</th>
+        <th scope="col">Delete:</th>
+      </tr>
+  </thead>
+
+<tbody>
+  <% @users.each do |user| %>
+  <tr> 
+    <td><%= user.email %></td>
+    <% if user != current_user %>   
+    <td class="btn btn-danger">
+      <%= link_to "Delete", account_user_path(user), method: :delete, 
+        data: {confirm: "Are you sure?"} %>
+    <%else%>
+    <td>Nix! User is Admin!</td>
+      <%end%>
+  </tr>
+  <%end%>
+</tbody>

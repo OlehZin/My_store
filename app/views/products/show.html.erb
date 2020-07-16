@@ -1,1 +1,27 @@
-<%= @product.price %>
+<thead>
+  <table class="table table-striped">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Description</th>
+      <th scope="col">Add to the cart</th>
+    </tr>
+</thead>
+
+<tbody>
+  
+  <tr> 
+    <td><%= @product.id %></td>
+    <td><%= @product.name %></td>
+    <td><%= @product.price %> $ </td>
+    <td><%= @product.description %></td>
+    <td class="btn btn-success">
+      <%= link_to "Add to the cart", add_to_cart_product_path, method: :post, :class => "btn" %></td>
+  </tr>
+  </table>
+</tbody>
+
+<% if @product.image.attached? %>
+  <image src="<%=(url_for(@product.image))%>">
+<%end%>

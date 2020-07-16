@@ -1,0 +1,25 @@
+<thead>
+  <table class="table table-bordered table-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Description</th>
+    </tr>
+</thead>
+
+<tbody>
+    <tr> 
+      <td><%= @product.id %></td>
+      <td><%= @product.name %></td>
+      <td><%= @product.price %> $ </td>
+      <td><%= @product.description %></td>
+    </tr>
+  </table>
+</tbody>
+
+<p><%= link_to "Edit Product", edit_account_product_path, class: "btn btn-info" %></p>
+
+<% if @product.image.attached? %>
+  <image src="<%=(url_for(@product.image))%>">
+<%end%>

@@ -1,0 +1,8 @@
+<h1>Create new product</h1>
+  <%= simple_form_for @product, url: account_products_path(@product), method: :post do |f| %>
+    <%= f.label "Image:" %>
+    <%= f.file_field :image %> 
+    <%= render partial: "form", locals: {f: f}%>
+    <%= f.submit "Save", class: "btn btn-primary" %>
+  <% end %>
+  
